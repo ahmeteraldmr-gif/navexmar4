@@ -232,7 +232,6 @@ class DatabaseSeeder extends Seeder
                 'category' => 'Sektörel Gelişmeler',
                 'image' => '/images/news_green.jpg',
                 'summary' => 'IMO CII ve EU ETS karbon düzenlemeleri kapsamında gemilerinizin liman emisyon hesaplamaları ve sürdürülebilirlik raporlaması.',
-                'description' => 'Avrupa Birliği Emisyon Ticaret Sistemi (EU ETS) ve IMO Karbon Yoğunluğu Göstergesi (CII) standartlarına uyum sürecinde armatörlerimize teknik danışmanlık hizmeti sunmaya başladık.',
                 'content' => "Uluslararası Denizcilik Örgütü (IMO) ve Avrupa Birliği'nin sıfır karbon hedefleri doğrultusunda denizcilik sektörü köklü bir değişimden geçmektedir. NAVEXMAR Yeşil Denizcilik Masası, Türk Boğazları geçişi ve Türkiye limanları uğraklarında gemilerinizin yakıt tüketimi, emisyon salınımı ve biyolojik arıtma sistemlerinin uluslararası standartlara uyumunu kontrol ederek yeşil sertifikasyon sürecine katkı sağlamaktadır.",
                 'author' => 'NAVEXMAR Teknik Direktörlük',
                 'is_published' => true,
