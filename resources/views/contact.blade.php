@@ -193,7 +193,7 @@ textarea.form-control { resize: vertical; min-height: 120px; }
                     {{ __t('Gemi bilgilerinizi ve uğrak limanınızı iletin; proforma liman giderleriniz (PDA) en geç 2 saat içinde tarafınıza iletilsin.', 'Submit your vessel specs and port call details; your proforma disbursement account (PDA) will be delivered within 2 hours.') }}
                 </p>
 
-                <form action="{{ route('contact.store') }}" method="POST">
+                <form action="{{ route('contact.send') }}" method="POST">
                     @csrf
                     <div class="form-grid">
                         <div class="form-group">
