@@ -344,7 +344,7 @@
                 <div class="svc-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
                 <div class="svc-title">{{ __t('Teknik Destek', 'Technical Support') }}</div>
                 <div class="svc-desc">{{ __t('Türkiye limanlarında acil arıza müdahalesi, yedek parça temini ve sertifikalı bakım hizmetleri.', 'Emergency technical repairs, spare parts delivery and certified maintenance at all Turkish ports.') }}</div>
-                <a href="{{ route('services.show', 'teknik-ve-makine-destegi') }}" class="svc-link">{{ __t('Detaylar', 'Details') }} <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="{{ route('services.show', 'teknik-survey-bakim-onarim') }}" class="svc-link">{{ __t('Detaylar', 'Details') }} <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="svc-card">
                 <div class="svc-icon"><i class="fa-solid fa-box"></i></div>
