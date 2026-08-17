@@ -26,97 +26,133 @@ if (!empty($service->image)) {
 
 @section('styles')
 <style>
-.svc-detail-grid { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: start; }
-.svc-main-img { border-radius: var(--r); overflow: hidden; aspect-ratio: 16/9; margin-bottom: 32px; border: 1px solid var(--border); box-shadow: var(--shadow); }
-.svc-main-img img { width: 100%; height: 100%; object-fit: cover; }
-.svc-detail-body h2 { font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
-.svc-detail-body p { color: var(--muted); line-height: 1.75; margin-bottom: 16px; font-size: 0.92rem; }
-.svc-detail-body ul { list-style: none; margin-bottom: 24px; }
-.svc-detail-body ul li {
-    display: flex; align-items: flex-start; gap: 10px;
-    font-size: 0.88rem; color: var(--text); padding: 9px 0; border-bottom: 1px solid var(--border);
+/* ─── SERVICE SHOWCASE LUXURY STYLES ─── */
+.svc-container { max-width: 1140px; margin: 0 auto; }
+
+.svc-hero {
+    background: linear-gradient(135deg, #04101F 0%, #0B2545 100%);
+    padding: 56px 0 48px;
+    color: white;
+    position: relative;
+    overflow: hidden;
 }
-.svc-detail-body ul li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--teal); flex-shrink: 0; margin-top: 2px; }
+
+.svc-detail-grid { display: grid; grid-template-columns: 1fr 340px; gap: 40px; align-items: start; }
+
+.svc-main-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    box-shadow: 0 4px 16px rgba(6, 24, 46, 0.04);
+}
+
+.svc-main-img {
+    position: relative; width: 100%; height: 320px;
+    overflow: hidden; background: #0B2545;
+}
+.svc-main-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.svc-content-padding { padding: 32px; }
+
+.svc-detail-body h2 { font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: 16px; font-family:'Outfit',sans-serif; }
+.svc-detail-body p { color: var(--muted); line-height: 1.75; margin-bottom: 20px; font-size: 0.94rem; }
+
+.svc-feature-box {
+    background: #F8FAFC; border: 1px solid #E2E8F0;
+    border-radius: 12px; padding: 24px; margin-bottom: 28px;
+}
+.svc-feature-box h4 { font-size: 0.95rem; font-weight: 800; color: var(--navy); margin-bottom: 14px; font-family:'Outfit',sans-serif; }
+
+.svc-features-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.svc-features-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 0.88rem; color: var(--navy); font-weight: 600;
+}
+.svc-features-list li i { color: var(--teal); font-size: 1rem; margin-top: 2px; }
 
 .svc-sidebar-card {
-    background: white; border: 1px solid var(--border); border-radius: var(--r); padding: 24px; margin-bottom: 20px; box-shadow: var(--shadow);
+    background: white; border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 14px rgba(6, 24, 46, 0.04);
 }
-.svc-sidebar-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); font-family: 'Inter', sans-serif; }
+.svc-sidebar-card h4 { font-size: 0.92rem; font-weight: 800; color: var(--navy); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); font-family: 'Outfit', sans-serif; }
 .svc-other-link {
-    display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border);
-    font-size: 0.84rem; color: var(--muted); transition: color 0.2s; text-decoration: none; font-weight: 500;
+    display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border);
+    font-size: 0.86rem; color: var(--muted); transition: all 0.2s ease; text-decoration: none; font-weight: 600;
 }
 .svc-other-link:last-child { border-bottom: none; }
-.svc-other-link:hover, .svc-other-link.active { color: var(--blue); font-weight: 600; }
-.svc-other-link i { font-size: 0.7rem; }
-
-.f-contact-item { display: flex; gap: 10px; align-items: center; font-size: 0.84rem; color: var(--text); margin-bottom: 10px; }
-.f-contact-item i { color: var(--blue); width: 16px; text-align: center; }
+.svc-other-link:hover, .svc-other-link.active { color: var(--blue); }
 
 @media(max-width: 1024px){ .svc-detail-grid { grid-template-columns: 1fr; } }
 </style>
 @endsection
 
 @section('content')
-<div class="page-hero">
-    <div class="container">
-        <div class="page-hero-badge"><i class="fa-solid fa-anchor"></i> Hizmetler</div>
-        <h1>{{ $service->title ?? 'Hizmet Detayı' }}</h1>
-        <p>{{ $service->short_description ?? $service->summary ?? 'NAVEXMAR profesyonel denizcilik hizmetleri.' }}</p>
+
+{{-- HERO --}}
+<div class="svc-hero">
+    <div class="container svc-container">
+        <div class="page-hero-badge"><i class="fa-solid fa-anchor"></i> {{ __t('Hizmet Portföyü', 'Service Portfolio') }}</div>
+        <h1>{{ $service->title }}</h1>
+        <p>{{ $service->summary }}</p>
     </div>
 </div>
 
 <section class="sec sec-alt">
-    <div class="container">
+    <div class="container svc-container">
         <div class="svc-detail-grid">
-            <div>
+            <div class="svc-main-card">
                 <div class="svc-main-img">
                     <img src="{{ $imgSrc }}" alt="{{ $service->title }}" loading="lazy">
                 </div>
-                <div class="svc-detail-body">
-                    {!! $service->description ?? '<p>Bu hizmet hakkında detaylı bilgi almak için bizimle iletişime geçebilirsiniz.</p>' !!}
-                </div>
-                <div style="margin-top: 36px; display: flex; gap: 12px; flex-wrap: wrap;">
-                    <a href="{{ route('contact') }}" class="btn-primary"><i class="fa-solid fa-file-invoice-dollar"></i> {{ __t('PDA Teklif Al', 'Get PDA Quote') }}</a>
-                    <a href="{{ route('services.index') }}" class="btn-outline"><i class="fa-solid fa-arrow-left"></i> {{ __t('Tüm Hizmetler', 'All Services') }}</a>
+                <div class="svc-content-padding">
+                    <div class="svc-detail-body">
+                        <h2>{{ __t('Hizmet Detayları ve Operasyon Kapsamı', 'Service Details & Operational Scope') }}</h2>
+                        <p>{{ $service->description ?? $service->summary }}</p>
+
+                        @if(!empty($service->features))
+                        <div class="svc-feature-box">
+                            <h4><i class="fa-solid fa-square-check" style="color:var(--blue);margin-right:6px;"></i> {{ __t('Öne Çıkan Operasyonel Avantajlar', 'Key Operational Advantages') }}</h4>
+                            <ul class="svc-features-list">
+                                @foreach((is_array($service->features) ? $service->features : json_decode($service->features, true) ?? []) as $feat)
+                                    <li><i class="fa-solid fa-circle-check"></i> {{ $feat }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                    </div>
+
+                    <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:28px; padding-top:24px; border-top:1px solid var(--border);">
+                        <a href="{{ route('contact') }}" class="btn-primary"><i class="fa-solid fa-file-invoice-dollar"></i> {{ __t('Proforma Teklif İste', 'Request Proforma Quote') }}</a>
+                        <a href="tel:{{ \App\Models\SiteSetting::get('mobile', '+905327009090') }}" class="btn-outline"><i class="fa-solid fa-phone"></i> {{ __t('7/24 Acil Operasyon', '24/7 Duty Call') }}</a>
+                    </div>
                 </div>
             </div>
 
+            <!-- Sidebar -->
             <div>
                 <div class="svc-sidebar-card">
-                    <h4><i class="fa-solid fa-headset" style="color:var(--blue);margin-right:7px;"></i> {{ __t('7/24 Operasyon Destek', '24/7 Operational Support') }}</h4>
-                    <div style="font-size:0.82rem;color:var(--muted);margin-bottom:16px;line-height:1.6;">{{ __t('Bu hizmet için teklif almak veya acil operasyon bildiriminde bulunmak için:', 'To request a quote or notify emergency attendance for this service:') }}</div>
-                    <div class="f-contact-item"><i class="fa-solid fa-phone"></i><span>+90 212 444 62 83</span></div>
-                    <div class="f-contact-item"><i class="fa-solid fa-mobile-screen"></i><span>{{ __t('Acil', 'Emergency') }}: +90 532 700 90 90</span></div>
-                    <div class="f-contact-item"><i class="fa-solid fa-envelope"></i><span>ops@navexmar.com</span></div>
-                    <a href="{{ route('contact') }}" class="btn-primary" style="width:100%;justify-content:center;margin-top:14px;">
-                        <i class="fa-solid fa-envelope"></i> {{ __t('Teklif İste', 'Request Quote') }}
-                    </a>
-                </div>
-
-                @if(isset($services) && count($services) > 0)
-                <div class="svc-sidebar-card">
-                    <h4><i class="fa-solid fa-anchor" style="color:var(--blue);margin-right:7px;"></i> {{ __t('Diğer Hizmetlerimiz', 'Our Other Services') }}</h4>
+                    <h4><i class="fa-solid fa-list" style="color:var(--blue);margin-right:6px;"></i> {{ __t('Tüm Hizmetlerimiz', 'All Services') }}</h4>
                     @foreach($services as $s)
-                    <a href="{{ route('services.show', $s->slug) }}" class="svc-other-link {{ $s->id == $service->id ? 'active' : '' }}">
-                        <span>{{ $s->title }}</span>
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </a>
+                        <a href="{{ route('services.show', $s->slug) }}" class="svc-other-link {{ $s->slug === $service->slug ? 'active' : '' }}">
+                            <span>{{ $s->title }}</span>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
                     @endforeach
                 </div>
-                @endif
 
-                <div class="svc-sidebar-card">
-                    <h4><i class="fa-solid fa-certificate" style="color:var(--blue);margin-right:7px;"></i> {{ __t('Sertifikalar', 'Certifications') }}</h4>
-                    <div style="display:flex;flex-wrap:wrap;gap:6px;">
-                        <span style="background:var(--sky);color:var(--blue);padding:4px 10px;border-radius:4px;font-size:0.72rem;font-weight:600;">BIMCO Member</span>
-                        <span style="background:var(--sky);color:var(--blue);padding:4px 10px;border-radius:4px;font-size:0.72rem;font-weight:600;">FONASBA Quality</span>
-                        <span style="background:var(--sky);color:var(--blue);padding:4px 10px;border-radius:4px;font-size:0.72rem;font-weight:600;">ISO 9001:2015</span>
-                        <span style="background:var(--sky);color:var(--blue);padding:4px 10px;border-radius:4px;font-size:0.72rem;font-weight:600;">DTO {{ __t('Üyesi', 'Member') }}</span>
+                <div class="svc-sidebar-card" style="background:var(--navy); color:white;">
+                    <h4 style="color:white; border-color:rgba(255,255,255,0.12);"><i class="fa-solid fa-headset" style="color:var(--cyan);margin-right:6px;"></i> {{ __t('7/24 Operasyon Masası', '24/7 Duty Desk') }}</h4>
+                    <p style="font-size:0.82rem; color:rgba(255,255,255,0.7); margin-bottom:16px; line-height:1.6;">
+                        {{ __t('Gemilerinizin Türk Boğazları geçişi ve liman acenteliği için 7/24 anlık canlı destek.', '24/7 duty attendance for Bosphorus transit and Turkish port agency calls.') }}
+                    </p>
+                    <div style="font-size:0.84rem; font-weight:700; color:white; margin-bottom:8px;">
+                        <i class="fa-solid fa-phone" style="color:var(--cyan); margin-right:6px;"></i> {{ \App\Models\SiteSetting::get('phone', '+90 212 444 62 83') }}
+                    </div>
+                    <div style="font-size:0.84rem; font-weight:700; color:var(--cyan);">
+                        <i class="fa-solid fa-envelope" style="margin-right:6px;"></i> {{ \App\Models\SiteSetting::get('email', 'ops@navexmar.com') }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 @endsection

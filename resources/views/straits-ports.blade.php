@@ -3,143 +3,115 @@
 
 @section('styles')
 <style>
-/* ─── STRAIT CARDS ─── */
-.strait-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 48px;
+/* ─── STRAITS & PORTS LUXURY STYLES ─── */
+.stp-container { max-width: 1140px; margin: 0 auto; }
+
+.stp-hero {
+    background: linear-gradient(135deg, #04101F 0%, #0B2545 100%);
+    padding: 56px 0 48px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.strait-cards-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px; margin-bottom: 48px;
 }
 .strait-card {
     position: relative;
-    border-radius: var(--r);
+    border-radius: 16px;
     overflow: hidden;
     aspect-ratio: 16/9;
+    box-shadow: 0 10px 30px rgba(6, 24, 46, 0.15);
+    border: 1px solid var(--border);
 }
 .strait-card img {
     width: 100%; height: 100%;
     object-fit: cover;
-    transition: transform 0.4s;
+    transition: transform 0.5s ease;
 }
-.strait-card:hover img { transform: scale(1.04); }
+.strait-card:hover img { transform: scale(1.06); }
 .strait-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(11,37,69,0.85) 0%, rgba(11,37,69,0.1) 60%);
+    background: linear-gradient(to top, rgba(4, 16, 31, 0.92) 0%, rgba(4, 16, 31, 0.2) 65%);
 }
 .strait-body {
     position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 20px 22px; z-index: 2;
+    padding: 24px; z-index: 2;
 }
 .strait-badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: #fff;
-    padding: 3px 12px; border-radius: 99px;
-    font-size: 0.7rem; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.5px;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(56, 189, 248, 0.18);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: var(--cyan);
+    padding: 4px 12px; border-radius: 99px;
+    font-size: 0.72rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.8px;
     margin-bottom: 8px;
 }
 .strait-title {
-    font-size: 1.25rem; font-weight: 700;
-    color: white; margin-bottom: 4px; letter-spacing: -0.2px;
+    font-size: 1.4rem; font-weight: 800;
+    color: white; margin-bottom: 4px; font-family:'Outfit',sans-serif;
 }
-.strait-sub { font-size: 0.78rem; color: rgba(255,255,255,0.8); }
+.strait-sub { font-size: 0.84rem; color: rgba(255, 255, 255, 0.8); }
 
-/* ─── SPEC TABLE ─── */
-.spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+/* SPEC TABLES */
+.spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 56px; }
 .spec-box {
     background: white;
     border: 1px solid var(--border);
-    border-radius: var(--r);
+    border-radius: 14px;
     overflow: hidden;
+    box-shadow: 0 4px 14px rgba(6, 24, 46, 0.04);
 }
 .spec-box-head {
     background: var(--navy);
-    padding: 12px 18px;
-    display: flex; align-items: center; gap: 8px;
+    padding: 14px 20px;
+    display: flex; align-items: center; gap: 10px;
+    color: white; font-family:'Outfit',sans-serif;
+    font-size: 1rem; font-weight: 800;
 }
-.spec-box-head i { color: #90CAF9; }
-.spec-box-head h4 {
-    font-size: 0.84rem; font-weight: 700;
-    color: white; font-family: 'Inter', sans-serif;
-}
-.spec-row {
-    display: flex; justify-content: space-between;
-    padding: 9px 18px;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.83rem;
-}
-.spec-row:last-child { border-bottom: none; }
-.spec-lbl { color: var(--muted); }
-.spec-val { color: var(--navy); font-weight: 600; }
+.spec-box-head i { color: var(--cyan); font-size: 1.1rem; }
 
-/* ─── PORT CARDS ─── */
-.port-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.spec-table { width: 100%; border-collapse: collapse; }
+.spec-table tr { border-bottom: 1px solid var(--border); }
+.spec-table tr:last-child { border-bottom: none; }
+.spec-table td { padding: 12px 18px; font-size: 0.84rem; }
+.spec-table td:first-child { color: var(--muted); font-weight: 600; width: 45%; }
+.spec-table td:last-child { color: var(--navy); font-weight: 700; }
+
+/* PORTS GRID */
+.ports-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .port-card {
     background: white;
     border: 1px solid var(--border);
-    border-radius: var(--r);
-    overflow: hidden;
-    transition: box-shadow 0.2s, transform 0.2s;
+    border-radius: 14px;
+    padding: 24px;
+    transition: all 0.25s ease;
 }
-.port-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
-.port-card-head {
-    background: var(--sky);
-    padding: 14px 16px;
-    display: flex; align-items: center; gap: 10px;
-    border-bottom: 1px solid var(--border);
-}
-.port-card-icon {
-    width: 36px; height: 36px;
-    background: var(--blue); border-radius: 6px;
+.port-card:hover { transform: translateY(-4px); border-color: #90CAF9; box-shadow: 0 12px 28px rgba(6, 24, 46, 0.1); }
+.port-icon {
+    width: 44px; height: 44px;
+    background: var(--sky); border-radius: 10px;
     display: grid; place-items: center;
-    color: white; font-size: 0.85rem; flex-shrink: 0;
+    color: var(--blue); font-size: 1.1rem;
+    margin-bottom: 14px;
 }
-.port-card-name {
-    font-size: 0.9rem; font-weight: 700;
-    color: var(--navy);
+.port-title { font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: 4px; font-family:'Outfit',sans-serif; }
+.port-region { font-size: 0.76rem; color: var(--blue); font-weight: 700; margin-bottom: 12px; }
+.port-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+.port-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.port-tag {
+    background: #F1F5F9; color: var(--navy);
+    font-size: 0.7rem; font-weight: 700;
+    padding: 3px 8px; border-radius: 4px;
+    border: 1px solid #E2E8F0;
 }
-.port-card-loc { font-size: 0.73rem; color: var(--muted); }
-.port-body { padding: 12px 16px; }
-.port-row {
-    display: flex; justify-content: space-between;
-    font-size: 0.8rem; padding: 6px 0;
-    border-bottom: 1px dashed var(--border);
-}
-.port-row:last-child { border-bottom: none; }
-.port-row-lbl { color: var(--muted); }
-.port-row-val { color: var(--navy); font-weight: 600; }
 
-/* ─── REGULATION CARDS ─── */
-.reg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.reg-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--blue);
-    border-radius: var(--r);
-    padding: 18px 20px;
-}
-.reg-card-head {
-    display: flex; align-items: center; gap: 8px;
-    margin-bottom: 8px;
-}
-.reg-card-head i { color: var(--blue); }
-.reg-card-head h4 {
-    font-size: 0.88rem; font-weight: 700;
-    color: var(--navy); font-family: 'Inter', sans-serif;
-}
-.reg-card p { font-size: 0.81rem; color: var(--muted); line-height: 1.65; }
-.reg-card p strong { color: var(--navy); }
-
-@media (max-width: 1024px) {
-    .strait-grid { grid-template-columns: 1fr; }
-    .port-grid { grid-template-columns: 1fr 1fr; }
-    .reg-grid { grid-template-columns: 1fr; }
-    .spec-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 640px) {
-    .port-grid { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+    .strait-cards-grid, .spec-grid { grid-template-columns: 1fr; }
+    .ports-grid { grid-template-columns: 1fr; }
 }
 </style>
 @endsection
@@ -147,234 +119,119 @@
 @section('content')
 
 {{-- PAGE HERO --}}
-<div class="page-hero">
-    <div class="container">
-        <div class="page-hero-badge"><i class="fa-solid fa-compass"></i> {{ __t('Boğazlar & Limanlar', 'Straits & Ports') }}</div>
-        <h1>{{ __t('Operasyon Coğrafyamız', 'Our Operational Geography') }}</h1>
-        <p>{{ __t('İstanbul ve Çanakkale Boğazları ile Türkiye\'nin başlıca limanlarında 7/24 kesintisiz acentelik hizmetleri.', 'Uninterrupted 24/7 shipping agency attendance in Bosphorus, Dardanelles and all ports of Turkey.') }}</p>
+<div class="stp-hero">
+    <div class="container stp-container">
+        <div class="page-hero-badge"><i class="fa-solid fa-compass"></i> {{ __t('Navigasyon & Liman Rehberi', 'Navigation & Port Guide') }}</div>
+        <h1>{{ __t('Türk Boğazları & Operasyon Bölge Limanları', 'Turkish Straits & Regional Ports') }}</h1>
+        <p>{{ __t('İstanbul ve Çanakkale boğazı transit geçiş limitleri, VTS bildirim süreleri ve Türkiye fener harçları rehberi.', 'Bosphorus & Dardanelles transit navigation limits, VTS regulations and port specifications.') }}</p>
     </div>
 </div>
 
-{{-- BOĞAZ KARTI --}}
 <section class="sec sec-alt">
-    <div class="container">
-        <div class="sec-label">{{ __t('Türk Boğazları', 'Turkish Straits') }}</div>
-        <h2 class="sec-title" style="margin-bottom: 24px;">{{ __t('İki Boğaz, Tek Uzman Acente', 'Two Straits, One Expert Agency') }}</h2>
-
-        <div class="strait-grid">
+    <div class="container stp-container">
+        
+        <!-- Strait Cards -->
+        <div class="strait-cards-grid">
             <div class="strait-card">
-                <img src="{{ asset('images/svc_strait_transit.jpg') }}" alt="İstanbul Boğazı" loading="lazy">
+                <img src="/images/bosphorus_night.jpg" alt="İstanbul Boğazı" loading="lazy">
                 <div class="strait-overlay"></div>
                 <div class="strait-body">
-                    <div class="strait-badge"><span style="width:6px;height:6px;background:#4CAF50;border-radius:50%;display:inline-block;"></span> {{ __t('Geçişe Açık', 'Open to Transit') }}</div>
-                    <div class="strait-title">{{ __t('İstanbul Boğazı', 'Bosphorus Strait') }}</div>
-                    <div class="strait-sub">31 km · {{ __t('En dar', 'Narrowest') }}: 700 m · {{ __t('Maks. draft', 'Max draft') }}: 17 m · VHF Ch 12</div>
+                    <span class="strait-badge"><i class="fa-solid fa-water"></i> Bosphorus Strait</span>
+                    <h2 class="strait-title">{{ __t('İstanbul Boğazı Transit Geçişi', 'Bosphorus Transit Passage') }}</h2>
+                    <p class="strait-sub">{{ __t('Karadeniz — Marmara Denizi Geçiş Koridoru (31 km)', 'Black Sea — Sea of Marmara Transit Corridor (31 km)') }}</p>
                 </div>
             </div>
+
             <div class="strait-card">
-                <img src="{{ asset('images/hero_bosphorus.jpg') }}" alt="Çanakkale Boğazı" loading="lazy">
+                <img src="/images/hero_bosphorus.jpg" alt="Çanakkale Boğazı" loading="lazy">
                 <div class="strait-overlay"></div>
                 <div class="strait-body">
-                    <div class="strait-badge"><span style="width:6px;height:6px;background:#4CAF50;border-radius:50%;display:inline-block;"></span> {{ __t('Geçişe Açık', 'Open to Transit') }}</div>
-                    <div class="strait-title">{{ __t('Çanakkale Boğazı', 'Dardanelles Strait') }}</div>
-                    <div class="strait-sub">61 km · {{ __t('En dar', 'Narrowest') }}: 1.200 m · {{ __t('Maks. draft', 'Max draft') }}: 23 m · VHF Ch 67</div>
+                    <span class="strait-badge"><i class="fa-solid fa-compass"></i> Dardanelles Strait</span>
+                    <h2 class="strait-title">{{ __t('Çanakkale Boğazı Transit Geçişi', 'Dardanelles Transit Passage') }}</h2>
+                    <p class="strait-sub">{{ __t('Marmara Denizi — Ege Denizi Geçiş Koridoru (68 km)', 'Sea of Marmara — Aegean Sea Transit Corridor (68 km)') }}</p>
                 </div>
             </div>
         </div>
 
-        {{-- TEKNİK VERİLER --}}
+        <!-- Spec Tables -->
         <div class="spec-grid">
             <div class="spec-box">
                 <div class="spec-box-head">
-                    <i class="fa-solid fa-anchor"></i>
-                    <h4>{{ __t('İstanbul Boğazı — Teknik Veriler', 'Bosphorus Strait — Technical Specifications') }}</h4>
+                    <i class="fa-solid fa-anchor"></i> {{ __t('İstanbul Boğazı Teknik Parametreleri', 'Bosphorus Technical Specifications') }}
                 </div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('Toplam Uzunluk', 'Total Length') }}</span><span class="spec-val">31 km</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('En Dar Nokta', 'Narrowest Point') }}</span><span class="spec-val">700 m (Anadoluhisarı)</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('Min. Derinlik', 'Min. Depth') }}</span><span class="spec-val">36 m</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('Maks. Draft (Tanker)', 'Max. Draft (Tanker)') }}</span><span class="spec-val">17,0 m</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('Maks. LOA', 'Max. LOA') }}</span><span class="spec-val">330 m</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('Akıntı Hızı', 'Current Speed') }}</span><span class="spec-val">3–4 knot (N→S)</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('VTS Kanalı', 'VTS Channel') }}</span><span class="spec-val">Ch 12 / Ch 11</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('Ön Bildirim', 'Pre-Notice') }}</span><span class="spec-val">{{ __t('24 saat önceden', '24 hours prior') }}</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('Pilotaj', 'Pilotage') }}</span><span class="spec-val">{{ __t('500 GRT üstü zorunlu', 'Compulsory >500 GRT') }}</span></div>
+                <table class="spec-table">
+                    <tr><td>{{ __t('Kanal Uzunluğu', 'Channel Length') }}</td><td>31 km / 17 mil</td></tr>
+                    <tr><td>{{ __t('En Dar Nokta', 'Narrowest Width') }}</td><td>700 m (Kandilli — Aşiyan)</td></tr>
+                    <tr><td>{{ __t('Maksimum Derinlik', 'Max Depth') }}</td><td>110 m (Min: 36 m)</td></tr>
+                    <tr><td>{{ __t('Akıntı Hızı', 'Current Speed') }}</td><td>3 – 4 knot (Kuzey ➔ Güney)</td></tr>
+                    <tr><td>{{ __t('VHF Kanalı', 'VHF Channels') }}</td><td>VTS Ch 12 (Kuzey) / Ch 11 (Güney)</td></tr>
+                    <tr><td>{{ __t('Maksimum LOA', 'Max LOA Limit') }}</td><td>330 m (Üzeri özel izne tabi)</td></tr>
+                    <tr><td>{{ __t('Maksimum Draft', 'Max Draft Limit') }}</td><td>17.50 m</td></tr>
+                    <tr><td>{{ __t('Kılavuz Kaptan', 'Pilotage Obligation') }}</td><td>500 GRT üzeri zorunlu / önermeli</td></tr>
+                </table>
             </div>
+
             <div class="spec-box">
                 <div class="spec-box-head">
-                    <i class="fa-solid fa-anchor"></i>
-                    <h4>{{ __t('Çanakkale Boğazı — Teknik Veriler', 'Dardanelles Strait — Technical Specifications') }}</h4>
+                    <i class="fa-solid fa-location-crosshairs"></i> {{ __t('Çanakkale Boğazı Teknik Parametreleri', 'Dardanelles Technical Specifications') }}
                 </div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('Toplam Uzunluk', 'Total Length') }}</span><span class="spec-val">61 km</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('En Dar Nokta', 'Narrowest Point') }}</span><span class="spec-val">1.200 m (Nara Point)</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('Min. Derinlik', 'Min. Depth') }}</span><span class="spec-val">55 m</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('Maks. Draft', 'Max. Draft') }}</span><span class="spec-val">23,0 m</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('Maks. LOA', 'Max. LOA') }}</span><span class="spec-val">350 m</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('Akıntı Hızı', 'Current Speed') }}</span><span class="spec-val">1–2 knot</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('VTS Kanalı', 'VTS Channel') }}</span><span class="spec-val">Ch 67 / Ch 14</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('Ön Bildirim', 'Pre-Notice') }}</span><span class="spec-val">{{ __t('24 saat önceden', '24 hours prior') }}</span></div>
-                <div class="spec-row"><span class="spec-lbl">{{ __t('Demirleme', 'Anchorage') }}</span><span class="spec-val">{{ __t('Gelibolu açıkları', 'Gelibolu Roads') }}</span></div>
+                <table class="spec-table">
+                    <tr><td>{{ __t('Kanal Uzunluğu', 'Channel Length') }}</td><td>68 km / 37 mil</td></tr>
+                    <tr><td>{{ __t('En Dar Nokta', 'Narrowest Width') }}</td><td>1.200 m (Çanakkale — Kilitbahir)</td></tr>
+                    <tr><td>{{ __t('Maksimum Derinlik', 'Max Depth') }}</td><td>103 m (Min: 55 m)</td></tr>
+                    <tr><td>{{ __t('Akıntı Hızı', 'Current Speed') }}</td><td>2 – 3 knot (Marmara ➔ Ege)</td></tr>
+                    <tr><td>{{ __t('VHF Kanalı', 'VHF Channels') }}</td><td>VTS Ch 71 / Ch 13 / Ch 14</td></tr>
+                    <tr><td>{{ __t('Maksimum LOA', 'Max LOA Limit') }}</td><td>300 m (Tanker sınırlaması)</td></tr>
+                    <tr><td>{{ __t('Maksimum Draft', 'Max Draft Limit') }}</td><td>18.00 m</td></tr>
+                    <tr><td>{{ __t('SP1 Bildirimi', 'SP1 Notification') }}</td><td>Geçişten 24 saat önce (SP1)</td></tr>
+                </table>
             </div>
         </div>
-    </div>
-</section>
 
-{{-- LİMANLAR --}}
-<section class="sec">
-    <div class="container">
-        <div class="sec-label">{{ __t('Türkiye Limanları', 'Turkish Ports') }}</div>
-        <h2 class="sec-title" style="margin-bottom: 24px;">{{ __t('Hizmet Verdiğimiz Limanlar', 'Ports We Serve') }}</h2>
+        <!-- Regional Ports -->
+        <div style="text-align:center; margin-bottom:36px;">
+            <div class="sec-label" style="justify-content:center;">{{ __t('Operasyon Bölgelerimiz', 'Our Operation Ports') }}</div>
+            <h2 class="sec-title">{{ __t('Acentelik Hizmeti Verdiğimiz Ana Limanlar', 'Key Ports Attended') }}</h2>
+        </div>
 
-        <div class="port-grid">
+        <div class="ports-grid">
             <div class="port-card">
-                <div class="port-card-head">
-                    <div class="port-card-icon"><i class="fa-solid fa-ship"></i></div>
-                    <div>
-                        <div class="port-card-name">{{ __t('Ambarlı Limanı', 'Ambarli Port') }}</div>
-                        <div class="port-card-loc">İstanbul, Marmara</div>
-                    </div>
-                </div>
-                <div class="port-body">
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Maks. Draft', 'Max Draft') }}</span><span class="port-row-val">16 m</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Yıllık Kapasite', 'Annual Capacity') }}</span><span class="port-row-val">3,5M TEU</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Terminaller', 'Terminals') }}</span><span class="port-row-val">Marport, ASYAPORT</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Operasyon', 'Operations') }}</span><span class="port-row-val">7/24</span></div>
+                <div class="port-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+                <div class="port-title">Ambarlı Liman Kompleksi</div>
+                <div class="port-region">Marmara · İstanbul</div>
+                <div class="port-desc">{{ __t('Kumport, Marport ve Mardaş konteyner terminal operasyonlarında acentelik ve draft gözetimi.', 'Agency attendance and draft survey at Kumport, Marport and Mardas container terminals.') }}</div>
+                <div class="port-tags">
+                    <span class="port-tag">Konteyner</span>
+                    <span class="port-tag">Ro-Ro</span>
+                    <span class="port-tag">Draft: 14.5m</span>
                 </div>
             </div>
 
             <div class="port-card">
-                <div class="port-card-head">
-                    <div class="port-card-icon"><i class="fa-solid fa-anchor"></i></div>
-                    <div>
-                        <div class="port-card-name">{{ __t('Haydarpaşa Limanı', 'Haydarpasa Port') }}</div>
-                        <div class="port-card-loc">İstanbul, Asian Side</div>
-                    </div>
-                </div>
-                <div class="port-body">
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Maks. Draft', 'Max Draft') }}</span><span class="port-row-val">12 m</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Rıhtım', 'Berths') }}</span><span class="port-row-val">4 {{ __t('adet', 'berths') }}</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Yük Tipi', 'Cargo Type') }}</span><span class="port-row-val">Genel Kargo, Ro-Ro</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Demiryolu', 'Railway') }}</span><span class="port-row-val">{{ __t('Mevcut', 'Available') }}</span></div>
+                <div class="port-icon"><i class="fa-solid fa-industry"></i></div>
+                <div class="port-title">İzmit Körfezi Limanları</div>
+                <div class="port-region">Kocaeli · Marmara</div>
+                <div class="port-desc">{{ __t('Evyap, Yılport, DP World Yarımca, Tüpraş ve Poliport terminal acentelik hizmetleri.', 'Terminal attendance at Evyap, Yilport, DP World Yarimca, Tupras and Poliport.') }}</div>
+                <div class="port-tags">
+                    <span class="port-tag">Dökme Yük</span>
+                    <span class="port-tag">Sıvı Yakıt</span>
+                    <span class="port-tag">Tanker</span>
                 </div>
             </div>
 
             <div class="port-card">
-                <div class="port-card-head">
-                    <div class="port-card-icon"><i class="fa-solid fa-industry"></i></div>
-                    <div>
-                        <div class="port-card-name">{{ __t('İzmit Körfezi', 'Gulf of Izmit') }}</div>
-                        <div class="port-card-loc">Kocaeli, Marmara East</div>
-                    </div>
-                </div>
-                <div class="port-body">
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Maks. Draft', 'Max Draft') }}</span><span class="port-row-val">14 m</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Terminaller', 'Terminals') }}</span><span class="port-row-val">AKSA, DİLİSKELESİ</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Yük Tipi', 'Cargo Type') }}</span><span class="port-row-val">Oil, LPG, Bulk</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Çevre', 'Environment') }}</span><span class="port-row-val">Gulf sheltered</span></div>
-                </div>
-            </div>
-
-            <div class="port-card">
-                <div class="port-card-head">
-                    <div class="port-card-icon"><i class="fa-solid fa-waves"></i></div>
-                    <div>
-                        <div class="port-card-name">{{ __t('İzmir Limanı', 'Izmir Port') }}</div>
-                        <div class="port-card-loc">İzmir, Aegean</div>
-                    </div>
-                </div>
-                <div class="port-body">
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Maks. Draft', 'Max Draft') }}</span><span class="port-row-val">13 m</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Yıllık Kapasite', 'Annual Capacity') }}</span><span class="port-row-val">1,2M TEU</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Terminaller', 'Terminals') }}</span><span class="port-row-val">EGELİMAN, ALSANCAK</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Bölge', 'Region') }}</span><span class="port-row-val">Aegean hub</span></div>
-                </div>
-            </div>
-
-            <div class="port-card">
-                <div class="port-card-head">
-                    <div class="port-card-icon"><i class="fa-solid fa-oil-well"></i></div>
-                    <div>
-                        <div class="port-card-name">{{ __t('Mersin Limanı', 'Mersin Port') }}</div>
-                        <div class="port-card-loc">Mersin, Mediterranean</div>
-                    </div>
-                </div>
-                <div class="port-body">
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Maks. Draft', 'Max Draft') }}</span><span class="port-row-val">15 m</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Terminaller', 'Terminals') }}</span><span class="port-row-val">MIP, Petkim Jetty</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Serbest Bölge', 'Free Zone') }}</span><span class="port-row-val">{{ __t('Mevcut', 'Available') }}</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Bölge', 'Region') }}</span><span class="port-row-val">Med hub</span></div>
-                </div>
-            </div>
-
-            <div class="port-card">
-                <div class="port-card-head">
-                    <div class="port-card-icon"><i class="fa-solid fa-mountain"></i></div>
-                    <div>
-                        <div class="port-card-name">{{ __t('Trabzon Limanı', 'Trabzon Port') }}</div>
-                        <div class="port-card-loc">Trabzon, Black Sea</div>
-                    </div>
-                </div>
-                <div class="port-body">
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Maks. Draft', 'Max Draft') }}</span><span class="port-row-val">11 m</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Yük Tipi', 'Cargo Type') }}</span><span class="port-row-val">General Cargo, Bulk</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Transit', 'Transit') }}</span><span class="port-row-val">Caucasus corridor</span></div>
-                    <div class="port-row"><span class="port-row-lbl">{{ __t('Bölge', 'Region') }}</span><span class="port-row-val">Black Sea East</span></div>
+                <div class="port-icon"><i class="fa-solid fa-ship"></i></div>
+                <div class="port-title">Aliağa & Nemrut Körfezi</div>
+                <div class="port-region">İzmir · Ege</div>
+                <div class="port-desc">{{ __t('Nemport, SOCAR Star Rafineri, Petkim ve Batıliman yakıt ve kimyasal yük acenteliği.', 'Chemical and fuel tanker attendance at Nemport, SOCAR Refinery, Petkim and Batiliman.') }}</div>
+                <div class="port-tags">
+                    <span class="port-tag">Kimyasal</span>
+                    <span class="port-tag">LPG / LNG</span>
+                    <span class="port-tag">Bunkering</span>
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
-{{-- MEVZUAT --}}
-<section class="sec sec-alt">
-    <div class="container">
-        <div class="sec-label">{{ __t('Mevzuat', 'Regulations') }}</div>
-        <h2 class="sec-title" style="margin-bottom: 24px;">{{ __t('Boğaz Geçişi Yasal Çerçevesi', 'Straits Transit Legal Framework') }}</h2>
-
-        <div class="reg-grid">
-            <div class="reg-card">
-                <div class="reg-card-head">
-                    <i class="fa-solid fa-clock"></i>
-                    <h4>{{ __t('Ön Bildirim Zorunluluğu', 'Pre-Notification Requirement') }}</h4>
-                </div>
-                <p>{{ __t('Her iki boğazdan geçiş yapacak gemilerin en geç 24 saat önce Kıyı Emniyeti Genel Müdürlüğü\'ne bildirimde bulunması zorunludur. Tehlikeli yük taşıyan gemiler için bu süre 48 saattir.', 'Vessels transiting both straits must submit pre-notice to Coastal Safety at least 24 hours prior. For dangerous cargo, pre-notice is 48 hours.') }}</p>
-            </div>
-
-            <div class="reg-card">
-                <div class="reg-card-head">
-                    <i class="fa-solid fa-user-tie"></i>
-                    <h4>{{ __t('Pilotaj Gereklilikleri', 'Pilotage Requirements') }}</h4>
-                </div>
-                <p>{{ __t('İstanbul Boğazı\'nda 500 GRT üstü tüm gemiler için pilotaj zorunludur. Çanakkale Boğazı\'nda büyük tonajlı ve tehlikeli yük taşıyan gemiler için pilotaj şiddetle tavsiye edilir.', 'Pilotage is compulsory in the Bosphorus for all vessels over 500 GRT. In Dardanelles, pilotage is strongly recommended for large tonnage and hazmat ships.') }}</p>
-            </div>
-
-            <div class="reg-card">
-                <div class="reg-card-head">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                    <h4>{{ __t('Tehlikeli Yük Kısıtlamaları', 'Hazardous Cargo Restrictions') }}</h4>
-                </div>
-                <p>{{ __t('Nükleer, radyoaktif veya belirli kimyasal yükler taşıyan gemilerin boğazlardan geçişi için özel izin ve koordinasyon gerekmektedir. NAVEXMAR bu süreçleri eksiksiz yönetir.', 'Special clearance & coordination is required for nuclear, radioactive or toxic chemical cargoes. NAVEXMAR manages all permission protocols.') }}</p>
-            </div>
-
-            <div class="reg-card">
-                <div class="reg-card-head">
-                    <i class="fa-solid fa-cloud-rain"></i>
-                    <h4>{{ __t('Kötü Hava Kısıtlamaları', 'Adverse Weather Restrictions') }}</h4>
-                </div>
-                <p>{{ __t('Görüş mesafesinin 1.000 m altına düşmesi veya fırtına uyarısı durumunda boğaz trafiği geçici olarak askıya alınabilir. NAVEXMAR anlık bilgilendirme ve alternatif planlama sunar.', 'In case visibility drops below 1,000 meters or storm warnings occur, strait traffic may be suspended. NAVEXMAR provides real-time updates.') }}</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- CTA --}}
-<section style="background: var(--navy); padding: 56px 0; text-align: center;">
-    <div class="container">
-        <h2 style="font-size: 1.7rem; color: white; margin-bottom: 10px;">{{ __t('Boğaz Geçişi için Hazır mısınız?', 'Ready for Straits Transit?') }}</h2>
-        <p style="color: rgba(255,255,255,0.65); margin-bottom: 26px; font-size: 0.9rem;">{{ __t('Transit geçiş ön bildirimi ve proforma teklifi için ekibimizle hemen iletişime geçin.', 'Contact our duty agency team for transit pre-notice clearance and proforma disbursement quotes.') }}</p>
-        <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
-            <a href="{{ route('contact') }}" class="btn-primary" style="font-size:0.88rem;"><i class="fa-solid fa-file-invoice-dollar"></i> {{ __t('Teklif Al', 'Get Quote') }}</a>
-            <a href="{{ route('contact') }}" class="btn-outline-white" style="font-size:0.88rem;"><i class="fa-solid fa-envelope"></i> {{ __t('İletişim', 'Contact') }}</a>
-        </div>
     </div>
 </section>
 
