@@ -3,255 +3,175 @@
 
 @section('styles')
 <style>
-/* ─── HERO ─── */
+/* ─── LUXURY MARITIME HERO ─── */
 .hero {
     position: relative;
-    min-height: 520px;
+    min-height: 560px;
     display: flex;
     align-items: center;
     overflow: hidden;
-    background: var(--navy);
+    background: linear-gradient(135deg, #04101F 0%, #0B2545 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .hero-img {
     position: absolute; inset: 0;
     background-image: url('{{ asset('images/hero_bosphorus.jpg') }}');
     background-size: cover;
     background-position: center;
-    opacity: 0.28;
+    opacity: 0.22;
+    filter: saturate(1.2);
 }
 .hero-content {
     position: relative;
     z-index: 2;
     width: 100%;
-    padding: 60px 0;
+    padding: 70px 0;
 }
 .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 7px;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #90CAF9;
-    padding: 5px 14px; border-radius: 99px;
-    font-size: 0.72rem; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.8px;
-    margin-bottom: 18px;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: var(--cyan);
+    padding: 6px 16px; border-radius: 99px;
+    font-size: 0.74rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 22px;
 }
-.dot-live { width:6px;height:6px;background:#4CAF50;border-radius:50%;display:inline-block;animation:blink 1.5s ease-in-out infinite; }
+.dot-live { width:7px;height:7px;background:#10B981;border-radius:50%;display:inline-block;animation:pulse-green 1.6s ease-in-out infinite; }
 .hero h1 {
-    font-size: clamp(1.7rem, 3.5vw, 2.8rem);
-    font-weight: 700;
+    font-size: clamp(1.9rem, 3.8vw, 3.1rem);
+    font-weight: 900;
     color: white;
-    line-height: 1.2;
-    margin-bottom: 16px;
-    letter-spacing: -0.3px;
+    line-height: 1.18;
+    margin-bottom: 18px;
+    letter-spacing: -0.5px;
 }
-.hero h1 span { color: #90CAF9; }
+.hero h1 span { color: var(--cyan); text-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
 .hero-desc {
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.7);
-    max-width: 480px;
+    font-size: 0.98rem;
+    color: rgba(255,255,255,0.78);
+    max-width: 500px;
     line-height: 1.7;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
 }
-.hero-btns { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; }
+.hero-btns { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 48px; }
 .hero-stats {
     display: flex; flex-wrap: wrap;
-    gap: 32px;
-    padding-top: 28px;
+    gap: 36px;
+    padding-top: 32px;
     border-top: 1px solid rgba(255,255,255,0.12);
 }
 .hero-stat-num {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.7rem; font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.9rem; font-weight: 900;
     color: white; line-height: 1;
 }
-.hero-stat-num span { color: #90CAF9; }
-.hero-stat-lbl { font-size: 0.75rem; color: rgba(255,255,255,0.55); margin-top: 3px; }
+.hero-stat-num span { color: var(--cyan); }
+.hero-stat-lbl { font-size: 0.76rem; color: rgba(255,255,255,0.6); margin-top: 4px; font-weight: 500; }
 
-/* Sağ kart */
+/* Right Live Deck Panel */
 .hero-card {
-    background: white;
-    border-radius: var(--r);
-    padding: 24px;
-    box-shadow: var(--shadow-lg);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 26px;
+    box-shadow: 0 20px 40px rgba(4, 16, 31, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 .hero-card-title {
-    font-size: 0.76rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.7px;
-    color: var(--muted); margin-bottom: 14px;
-    display: flex; align-items: center; gap: 7px;
+    font-size: 0.76rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 1px;
+    color: var(--muted); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
 }
 .hc-row {
     display: flex; justify-content: space-between;
-    align-items: flex-start; padding: 10px 0;
+    align-items: center; padding: 12px 0;
     border-bottom: 1px solid var(--border);
     gap: 12px;
 }
 .hc-row:last-child { border-bottom: none; }
-.hc-vessel { font-size: 0.84rem; font-weight: 600; color: var(--navy); }
-.hc-port { font-size: 0.74rem; color: var(--muted); }
-.hc-status { font-size: 0.69rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
-.hc-status.in  { background: #E8F5E9; color: #2E7D32; }
-.hc-status.out { background: #FFF8E1; color: #E65100; }
-.hc-status.port{ background: #E3F2FD; color: #1565C0; }
+.hc-vessel { font-size: 0.88rem; font-weight: 700; color: var(--navy); }
+.hc-port { font-size: 0.76rem; color: var(--muted); margin-top: 2px; }
+.hc-status { font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: 6px; white-space: nowrap; }
+.hc-status.in  { background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0; }
+.hc-status.out { background: #FFFBEB; color: #B45309; border: 1px solid #FDE68A; }
+.hc-status.port{ background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; }
 
 .hero-layout {
     display: grid;
-    grid-template-columns: 1fr 340px;
+    grid-template-columns: 1fr 360px;
     gap: 48px;
     align-items: center;
 }
 
-/* ─── SERVICES ─── */
-.svc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+/* ─── SERVICES DECK ─── */
+.svc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
 .svc-card {
     background: white;
     border: 1px solid var(--border);
-    border-radius: var(--r);
-    padding: 24px;
-    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    border-radius: 14px;
+    padding: 28px;
+    transition: all 0.3s var(--ease);
+    box-shadow: 0 4px 12px rgba(6, 24, 46, 0.04);
 }
 .svc-card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-3px);
-    border-color: #BBDEFB;
+    box-shadow: 0 16px 32px rgba(6, 24, 46, 0.1);
+    transform: translateY(-4px);
+    border-color: #90CAF9;
 }
 .svc-icon {
-    width: 44px; height: 44px;
+    width: 48px; height: 48px;
     background: var(--sky);
-    border-radius: var(--r);
+    border-radius: 12px;
     display: grid; place-items: center;
-    color: var(--blue); font-size: 1rem;
-    margin-bottom: 14px;
+    color: var(--blue); font-size: 1.15rem;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
 }
-.svc-title { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
-.svc-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
-.svc-link { font-size: 0.8rem; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s; }
-.svc-link:hover { gap: 8px; }
-
-/* ─── WHY ─── */
-.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-.why-img-wrap { border-radius: var(--r); overflow: hidden; aspect-ratio: 4/3; }
-.why-img-wrap img { width:100%;height:100%;object-fit:cover; }
-.why-list { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
-.why-item {
-    display: flex; gap: 14px; align-items: flex-start;
-    padding: 16px; border: 1px solid var(--border);
-    border-radius: var(--r); background: white;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-.why-item:hover { border-color: #BBDEFB; box-shadow: var(--shadow); }
-.why-item-icon {
-    width: 38px; height: 38px; flex-shrink: 0;
-    background: var(--sky); border-radius: var(--r);
-    display: grid; place-items: center;
-    color: var(--blue); font-size: 0.9rem;
-}
-.why-item h4 { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 3px; font-family:'Inter',sans-serif; }
-.why-item p { font-size: 0.79rem; color: var(--muted); line-height: 1.55; }
+.svc-title { font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+.svc-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.65; margin-bottom: 18px; }
+.svc-link { font-size: 0.82rem; font-weight: 700; color: var(--blue); display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+.svc-link:hover { gap: 10px; color: var(--navy); }
 
 /* ─── STATS STRIP ─── */
-.stats-strip { background: var(--navy); padding: 44px 0; }
-.stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; text-align: center; }
-.stat-val { font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 700; color: white; line-height:1; }
-.stat-val span { color: #90CAF9; }
-.stat-lbl { font-size: 0.76rem; color: rgba(255,255,255,0.55); margin-top: 6px; }
+.stats-strip { background: var(--navy); padding: 52px 0; border-y: 1px solid rgba(255,255,255,0.08); }
+.stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 28px; text-align: center; }
+.stat-val { font-family: 'Outfit', sans-serif; font-size: 2.3rem; font-weight: 900; color: white; line-height: 1; }
+.stat-val span { color: var(--cyan); }
+.stat-lbl { font-size: 0.8rem; color: rgba(255,255,255,0.65); margin-top: 8px; font-weight: 500; }
 
-/* ─── PDA ─── */
-.pda-wrap {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    overflow: hidden;
-    box-shadow: var(--shadow);
+/* ─── WHY NAVEXMAR ─── */
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: center; }
+.why-img-wrap { border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; box-shadow: var(--shadow-lg); }
+.why-img-wrap img { width:100%;height:100%;object-fit:cover; }
+.why-list { display: flex; flex-direction: column; gap: 18px; margin-top: 28px; }
+.why-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 18px; border: 1px solid var(--border);
+    border-radius: 12px; background: white;
+    transition: all 0.25s ease;
 }
-.pda-head {
-    background: var(--navy);
-    padding: 20px 28px;
-    display: flex; justify-content: space-between; align-items: center;
+.why-item:hover { border-color: #90CAF9; box-shadow: 0 8px 24px rgba(6, 24, 46, 0.08); transform: translateY(-2px); }
+.why-item-icon {
+    width: 42px; height: 42px; flex-shrink: 0;
+    background: var(--sky); border-radius: 10px;
+    display: grid; place-items: center;
+    color: var(--blue); font-size: 1rem;
 }
-.pda-head h3 { font-size: 1rem; font-weight: 700; color: white; margin-bottom: 2px; }
-.pda-head p { font-size: 0.78rem; color: rgba(255,255,255,0.6); }
-.pda-live { display:flex;align-items:center;gap:6px;font-size:0.7rem;color:#A5D6A7;font-weight:600;text-transform:uppercase; }
-.pda-body { padding: 28px; }
-.pda-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
-.pf label { display:block;font-size:0.72rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px; }
-.pf select, .pf input {
-    width:100%;border:1px solid var(--border);border-radius:6px;
-    padding:9px 12px;font-size:0.84rem;font-family:'Inter',sans-serif;
-    color:var(--text);background:var(--bg);outline:none;
-    transition:border-color 0.2s, background 0.2s;
-}
-.pf select:focus, .pf input:focus { border-color:var(--blue);background:white; }
-.pda-actions { display:flex;gap:10px;flex-wrap:wrap;align-items:center; }
-.pda-result {
-    display:none;margin-top:20px;background:var(--bg);
-    border:1px solid var(--border);border-radius:var(--r);padding:20px;
-}
-.pda-result.show { display:block; }
-.pda-result-title { font-size:0.72rem;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);margin-bottom:14px;font-weight:600; }
-.pda-items { display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px; }
-.pda-item { display:flex;justify-content:space-between;font-size:0.82rem;padding:8px 12px;background:white;border:1px solid var(--border);border-radius:6px; }
-.pda-item-lbl { color:var(--muted); }
-.pda-item-val { color:var(--navy);font-weight:600; }
-.pda-total {
-    display:flex;justify-content:space-between;align-items:center;
-    padding:12px 16px;background:var(--sky);border:1px solid #BBDEFB;border-radius:var(--r);
-}
-.pda-total-lbl { font-weight:700;color:var(--navy);font-size:0.86rem; }
-.pda-total-val { font-family:'Poppins',sans-serif;font-size:1.3rem;color:var(--blue);font-weight:700; }
+.why-item h4 { font-size: 0.92rem; font-weight: 800; color: var(--navy); margin-bottom: 4px; font-family:'Outfit',sans-serif; }
+.why-item p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
 
-/* ─── PORTS TABS ─── */
-.port-tabs { display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px; }
-.port-tab {
-    padding:7px 16px;background:white;border:1px solid var(--border);
-    border-radius:6px;font-size:0.82rem;font-weight:600;cursor:pointer;
-    color:var(--muted);font-family:'Inter',sans-serif;transition:all 0.2s;
+@media (max-width: 1024px) {
+    .hero-layout { grid-template-columns: 1fr; gap: 36px; }
+    .svc-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid { grid-template-columns: 1fr; gap: 36px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
 }
-.port-tab.active,.port-tab:hover { background:var(--navy);border-color:var(--navy);color:white; }
-.port-panel { display:none; }
-.port-panel.active { display:block; }
-.port-info-grid { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
-.port-info-card { background:white;border:1px solid var(--border);border-radius:var(--r);padding:16px; }
-.port-info-card h4 { font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--blue);margin-bottom:7px;font-family:'Inter',sans-serif; }
-.port-info-card p { font-size:0.8rem;color:var(--muted);line-height:1.6; }
-
-/* ─── VESSELS ─── */
-.vessel-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:16px; }
-.vessel-card { background:white;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:box-shadow 0.2s,transform 0.2s; }
-.vessel-card:hover { box-shadow:var(--shadow-lg);transform:translateY(-3px); }
-.vessel-img { aspect-ratio:16/9;overflow:hidden;background:var(--bg); }
-.vessel-img img { width:100%;height:100%;object-fit:cover;transition:transform 0.4s; }
-.vessel-card:hover .vessel-img img { transform:scale(1.04); }
-.vessel-body { padding:14px; }
-.vessel-type { display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;background:var(--sky);color:var(--blue);margin-bottom:6px; }
-.vessel-name { font-size:0.88rem;font-weight:700;color:var(--navy);margin-bottom:8px;font-family:'Inter',sans-serif; }
-.vessel-specs { display:grid;grid-template-columns:1fr 1fr;gap:4px; }
-.vessel-spec { font-size:0.72rem;color:var(--muted); }
-.vessel-spec strong { display:block;font-size:0.76rem;color:var(--text); }
-
-/* ─── NEWS ─── */
-.news-grid { display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:20px; }
-.news-card { background:white;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s,transform 0.2s; }
-.news-card:hover { box-shadow:var(--shadow-lg);transform:translateY(-3px); }
-.news-card-img { aspect-ratio:16/9;overflow:hidden; }
-.news-card-img img { width:100%;height:100%;object-fit:cover;transition:transform 0.4s; }
-.news-card:hover .news-card-img img { transform:scale(1.04); }
-.news-body { padding:18px;flex:1;display:flex;flex-direction:column; }
-.news-cat { display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.67rem;font-weight:700;text-transform:uppercase;background:var(--sky);color:var(--blue);margin-bottom:8px; }
-.news-title { font-size:0.9rem;font-weight:700;color:var(--navy);margin-bottom:7px;line-height:1.35;font-family:'Inter',sans-serif; }
-.news-title:hover { color:var(--blue); }
-.news-excerpt { font-size:0.78rem;color:var(--muted);line-height:1.6;flex:1;margin-bottom:10px; }
-.news-date { font-size:0.71rem;color:var(--muted); }
-
-/* ─── CTA STRIP ─── */
-.cta-strip { background: var(--navy); padding: 60px 0; text-align: center; }
-.cta-strip h2 { font-size: clamp(1.3rem,2.5vw,1.9rem); font-weight:700; color:white; margin-bottom:10px; }
-.cta-strip p { color:rgba(255,255,255,0.65); font-size:0.88rem; margin-bottom:24px; }
-.cta-btns { display:flex;justify-content:center;gap:12px;flex-wrap:wrap; }
-
-/* ─── RESPONSIVE ─── */
-@media (max-width:1100px) { .svc-grid{grid-template-columns:1fr 1fr;} .vessel-grid{grid-template-columns:1fr 1fr;} .news-grid{grid-template-columns:1fr 1fr;} .pda-grid{grid-template-columns:1fr 1fr;} .hero-layout{grid-template-columns:1fr;} .hero-card{display:none;} .stats-grid{grid-template-columns:1fr 1fr;} .why-grid{grid-template-columns:1fr;gap:28px;} }
-@media (max-width:640px) { .svc-grid{grid-template-columns:1fr;} .vessel-grid{grid-template-columns:1fr;} .news-grid{grid-template-columns:1fr;} .pda-grid{grid-template-columns:1fr;} .port-info-grid{grid-template-columns:1fr;} .pda-items{grid-template-columns:1fr;} .stats-grid{grid-template-columns:1fr 1fr;} }
+@media (max-width: 640px) {
+    .svc-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr; }
+}
 </style>
 @endsection
 
@@ -263,9 +183,9 @@
     <div class="container hero-content">
         <div class="hero-layout">
             <div>
-                <div class="hero-eyebrow"><span class="dot-live"></span> {{ __t('7/24 Operasyon Hattı Aktif', '24/7 Operations Line Active') }}</div>
+                <div class="hero-eyebrow"><span class="dot-live"></span> {{ __t('7/24 Nöbetçi Operasyon Masası', '24/7 Live Duty Operations Desk') }}</div>
                 <h1>{!! __t('Türk Boğazları\'nda<br>Güvenilir <span>Gemi Acenteniz</span>', 'Your Reliable <span>Shipping Agency</span><br>in Turkish Straits') !!}</h1>
-                <p class="hero-desc">{{ __t('İstanbul ve Çanakkale Boğazlarından Türkiye limanlarına — 18 yıllık deneyimle 7/24 profesyonel acentelik ve liman hizmetleri.', 'From the Bosphorus & Dardanelles Straits to all Turkish ports — 24/7 professional shipping agency and port services with 18 years of experience.') }}</p>
+                <p class="hero-desc">{{ __t('İstanbul ve Çanakkale Boğazlarından Türkiye limanlarına — 18 yıllık deneyimle 7/24 profesyonel acentelik ve liman hizmetleri.', 'From Bosphorus & Dardanelles Straits to all Turkish ports — 24/7 professional shipping agency and port attendance with 18 years experience.') }}</p>
                 <div class="hero-btns">
                     <a href="{{ route('contact') }}" class="btn-primary"><i class="fa-solid fa-file-invoice-dollar"></i> {{ __t('Teklif İste', 'Request Quote') }}</a>
                     <a href="{{ route('services.index') }}" class="btn-outline-white"><i class="fa-solid fa-anchor"></i> {{ __t('Hizmetlerimiz', 'Our Services') }}</a>
@@ -279,7 +199,7 @@
             </div>
 
             <div class="hero-card">
-                <div class="hero-card-title"><i class="fa-solid fa-satellite-dish" style="color:var(--teal);"></i> {{ __t('Anlık Operasyonlar', 'Live Operations') }}</div>
+                <div class="hero-card-title"><i class="fa-solid fa-satellite-dish" style="color:var(--blue);"></i> {{ __t('Canlı Operasyon Masası', 'Live Operations Desk') }}</div>
                 <div class="hc-row">
                     <div><div class="hc-vessel">MV ATLAS STAR</div><div class="hc-port">Ambarlı → Bosphorus</div></div>
                     <span class="hc-status in">{{ __t('Giriş', 'Inbound') }}</span>
@@ -296,8 +216,8 @@
                     <div><div class="hc-vessel">MV OLYMPIA</div><div class="hc-port">Ambarlı · Loading</div></div>
                     <span class="hc-status port">{{ __t('Limanda', 'At Port') }}</span>
                 </div>
-                <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);font-size:0.72rem;color:var(--muted);">
-                    <i class="fa-solid fa-circle-info" style="margin-right:4px;"></i> {{ __t('Gerçek zamanlı veri — Bugün 07:30 itibarıyla', 'Real-time data — As of 07:30 today') }}
+                <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:0.75rem;color:var(--muted);">
+                    <i class="fa-solid fa-circle-info" style="margin-right:4px;color:var(--blue);"></i> {{ __t('Gerçek zamanlı deniz verisi — 7/24 Aktif Takip', 'Real-time maritime telemetry — 24/7 Active Tracking') }}
                 </div>
             </div>
         </div>
@@ -307,12 +227,12 @@
 {{-- HİZMETLER --}}
 <section class="sec sec-alt">
     <div class="container">
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;flex-wrap:wrap;gap:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px;flex-wrap:wrap;gap:16px;">
             <div>
                 <div class="sec-label">{{ __t('Hizmetlerimiz', 'Our Services') }}</div>
                 <h2 class="sec-title">{{ __t('Size Neler Sunuyoruz?', 'What We Offer') }}</h2>
             </div>
-            <a href="{{ route('services.index') }}" class="btn-outline" style="font-size:0.82rem;padding:9px 18px;">{{ __t('Tüm Hizmetler', 'All Services') }} <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="{{ route('services.index') }}" class="btn-outline" style="font-size:0.84rem;padding:10px 20px;">{{ __t('Tüm Hizmetler', 'All Services') }} <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <div class="svc-grid">
@@ -356,7 +276,7 @@
     </div>
 </section>
 
-{{-- STATS --}}
+{{-- STATS STRIP --}}
 <div class="stats-strip">
     <div class="container">
         <div class="stats-grid">
@@ -404,139 +324,4 @@
     </div>
 </section>
 
-{{-- GEMİLER --}}
-@php
-$vesselFallbackImages = [
-    'images/vsl_container.jpg',
-    'images/vsl_tanker.jpg',
-    'images/vsl_bulk.jpg',
-    'images/vsl_roro.jpg',
-];
-$newsFallbackImages = [
-    'images/news_rules.jpg',
-    'images/news_limits.jpg',
-    'images/news_green.jpg',
-];
-@endphp
-
-@if(isset($vessels) && $vessels->count())
-<section class="sec sec-alt">
-    <div class="container">
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;flex-wrap:wrap;gap:14px;">
-            <div><div class="sec-label">{{ __t('Operasyon Filosu', 'Operation Fleet') }}</div><h2 class="sec-title">{{ __t('Hizmetimizde Olan Gemiler', 'Vessels Attended') }}</h2></div>
-            <a href="{{ route('vessels.index') }}" class="btn-outline" style="font-size:0.82rem;padding:9px 18px;">{{ __t('Tüm Filo', 'Full Fleet') }} <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <div class="vessel-grid">
-            @foreach($vessels->take(4) as $index => $v)
-            @php
-                $vslImg = null;
-                if (!empty($v->image)) {
-                    $vslImg = asset(ltrim($v->image, '/'));
-                } elseif (!empty($v->image_path)) {
-                    $vslImg = Storage::url($v->image_path);
-                } else {
-                    $vslImg = asset($vesselFallbackImages[$index % count($vesselFallbackImages)]);
-                }
-            @endphp
-            <div class="vessel-card">
-                <div class="vessel-img">
-                    <img src="{{ $vslImg }}" alt="{{ $v->name }}" loading="lazy">
-                </div>
-                <div class="vessel-body">
-                    <span class="vessel-type">{{ $v->type ?? $v->vessel_type ?? 'Cargo' }}</span>
-                    <div class="vessel-name">{{ $v->name }}</div>
-                    <div class="vessel-specs">
-                        @if($v->grt)<div class="vessel-spec"><strong>{{ number_format($v->grt) }} GRT</strong>Gross Tonnage</div>@endif
-                        @if($v->loa)<div class="vessel-spec"><strong>{{ $v->loa }} m</strong>LOA</div>@endif
-                        @if($v->flag)<div class="vessel-spec"><strong>{{ $v->flag }}</strong>{{ __t('Bayrak', 'Flag') }}</div>@endif
-                        @if($v->year_built)<div class="vessel-spec"><strong>{{ $v->year_built }}</strong>{{ __t('İnşa Yılı', 'Built Year') }}</div>@endif
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-@endif
-
-{{-- HABERLER --}}
-@if(isset($news) && $news->count())
-<section class="sec">
-    <div class="container">
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;flex-wrap:wrap;gap:14px;">
-            <div><div class="sec-label">{{ __t('Haberler', 'News') }}</div><h2 class="sec-title">{{ __t('Son Gelişmeler', 'Latest Developments') }}</h2></div>
-            <a href="{{ route('news.index') }}" class="btn-outline" style="font-size:0.82rem;padding:9px 18px;">{{ __t('Tüm Haberler', 'All News') }} <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <div class="news-grid">
-            @foreach($news->take(3) as $index => $item)
-            <div class="news-card">
-                <div class="news-card-img">
-                    <img src="{{ $item->image_path ? Storage::url($item->image_path) : ($newsFallbackImages[$index % count($newsFallbackImages)]) }}" alt="{{ $item->title }}" loading="lazy">
-                </div>
-                <div class="news-body">
-                    <span class="news-cat">{{ $item->category ?? 'Haber' }}</span>
-                    <a href="{{ route('news.show', $item->slug) }}" class="news-title">{{ $item->title }}</a>
-                    <p class="news-excerpt">{{ Str::limit($item->excerpt ?? $item->content, 100) }}</p>
-                    <span class="news-date"><i class="fa-regular fa-calendar" style="margin-right:4px;"></i>{{ $item->created_at->format('d M Y') }}</span>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-@endif
-
-{{-- CTA --}}
-<div class="cta-strip">
-    <div class="container">
-        <h2>Geminiz İçin Teklif Alın</h2>
-        <p>İstanbul'dan İzmir'e, tüm Türkiye limanlarında acentelik için uzman ekibimizle iletişime geçin.</p>
-        <div class="cta-btns">
-            <a href="{{ route('contact') }}" class="btn-primary" style="font-size:0.9rem;padding:12px 28px;"><i class="fa-solid fa-envelope"></i> İletişime Geçin</a>
-            <a href="tel:{{ preg_replace('/\s+/', '', \App\Models\SiteSetting::get('phone', '+902124446283')) }}" class="btn-outline-white" style="font-size:0.9rem;padding:11px 26px;"><i class="fa-solid fa-phone"></i> {{ \App\Models\SiteSetting::get('phone', '+90 212 444 62 83') }}</a>
-        </div>
-    </div>
-</div>
-
-@endsection
-
-@section('scripts')
-<script>
-function switchPort(e, id) {
-    document.querySelectorAll('.port-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.port-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('port-' + id)?.classList.add('active');
-    e.currentTarget.classList.add('active');
-}
-
-function calcPDA() {
-    const port    = document.getElementById('pdaPort').value;
-    const type    = document.getElementById('pdaVesselType').value;
-    const grt     = parseFloat(document.getElementById('pdaGrt').value) || 0;
-    const loa     = parseFloat(document.getElementById('pdaLoa').value) || 0;
-    const purpose = document.getElementById('pdaPurpose').value;
-    if (!port || !type || !grt) { alert('Lütfen en az Liman, Gemi Tipi ve GRT giriniz.'); return; }
-    const pm = { istanbul:1.0,canakkale:0.85,ambarli:1.3,haydarpasa:1.1,izmit:1.15,izmir:1.2 }[port] || 1;
-    const tm = { tanker:1.2,bulkcarrier:1.0,container:1.3,general:1.0,roro:1.1 }[type] || 1;
-    const pa = { transit:0,loading:800,discharge:800,bunkering:400,repair:600 }[purpose] || 0;
-    const pilotage = Math.round(grt*0.018*pm*tm);
-    const harbour  = Math.round(grt*0.012*pm);
-    const mooring  = Math.round(loa>0 ? loa*18*pm : grt*0.006*pm);
-    const vts      = (port==='istanbul'||port==='canakkale') ? Math.round(grt*0.004*pm) : 0;
-    const agency   = Math.round((pilotage+harbour+mooring)*0.12*tm);
-    const total    = pilotage+harbour+mooring+vts+agency+pa;
-    const f = n => '$'+n.toLocaleString('tr-TR');
-    const items = [['Pilotaj',f(pilotage)],['Liman Harcı',f(harbour)],['Palamar',f(mooring)],['VTS',vts?f(vts):'Dahil'],['Acentelik',f(agency)],['Ek Gider',pa?f(pa):'—']];
-    document.getElementById('pdaItems').innerHTML = items.map(([l,v]) => `<div class="pda-item"><span class="pda-item-lbl">${l}</span><span class="pda-item-val">${v}</span></div>`).join('');
-    document.getElementById('pdaTotalVal').textContent = f(total);
-    const r = document.getElementById('pdaResult');
-    r.classList.add('show');
-    r.scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-
-function resetPDA() {
-    ['pdaPort','pdaVesselType','pdaGrt','pdaLoa','pdaDraft'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
-    document.getElementById('pdaResult').classList.remove('show');
-}
-</script>
 @endsection
