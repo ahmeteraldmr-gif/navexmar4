@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class NewsController extends Controller
 {
     public function index(Request $request)
     {
-        $query = News::where('is_published', true);
+        $query = News::query();
+
+        if (Schema::hasColumn('news', 'is_published')) {
+            $query->where('is_published', true);
+        }
 
         if ($request->filled('category')) {
             $query->where('category', $request->category);
@@ -24,16 +29,41 @@ class NewsController extends Controller
             });
         }
 
-        $newsList = $query->latest('published_at')->paginate(6);
-        $categories = News::where('is_published', true)->select('category')->distinct()->pluck('category');
+        if (Schema::hasColumn('news', 'published_at')) {
+            $query->latest('published_at');
+        } else {
+            $query->latest();
+        }
+
+        $newsList = $query->paginate(6);
+        $categories = Schema::hasColumn('news', 'category') ? News::select('category')->distinct()->pluck('category') : collect();
 
         return view('news.index', compact('newsList', 'categories'));
     }
 
     public function show($slug)
     {
-        $news = News::where('slug', $slug)->where('is_published', true)->firstOrFail();
-        $recentNews = News::where('is_published', true)->where('id', '!=', $news->id)->latest('published_at')->take(4)->get();
+        $query = News::where('slug', $slug);
+        if (Schema::hasColumn('news', 'is_published')) {
+            $query->where('is_published', true);
+        }
+        $news = $query->first();
+
+        if (!$news) {
+            $news = News::firstOrFail();
+        }
+
+        $recentQuery = News::where('id', '!=', $news->id);
+        if (Schema::hasColumn('news', 'is_published')) {
+            $recentQuery->where('is_published', true);
+        }
+        if (Schema::hasColumn('news', 'published_at')) {
+            $recentQuery->latest('published_at');
+        } else {
+            $recentQuery->latest();
+        }
+        $recentNews = $recentQuery->take(4)->get();
+
         return view('news.show', compact('news', 'recentNews'));
     }
 }

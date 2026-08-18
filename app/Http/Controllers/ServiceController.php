@@ -4,12 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class ServiceController extends Controller
 {
     public function index()
     {
-        $services = Service::where('is_active', true)->orderBy('sort_order')->get();
+        $query = Service::query();
+        if (Schema::hasTable('services')) {
+            if (Schema::hasColumn('services', 'is_active')) {
+                $query->where('is_active', true);
+            }
+            if (Schema::hasColumn('services', 'sort_order')) {
+                $query->orderBy('sort_order');
+            }
+            $services = $query->get();
+        } else {
+            $services = collect();
+        }
+
         return view('services.index', compact('services'));
     }
 
@@ -21,13 +34,30 @@ class ServiceController extends Controller
 
         $targetSlug = $aliases[$slug] ?? $slug;
 
-        $service = Service::where('slug', $targetSlug)->where('is_active', true)->first();
+        $serviceQuery = Service::where('slug', $targetSlug);
+        if (Schema::hasColumn('services', 'is_active')) {
+            $serviceQuery->where('is_active', true);
+        }
+        $service = $serviceQuery->first();
 
         if (!$service) {
-            $service = Service::where('slug', $slug)->where('is_active', true)->firstOrFail();
+            $fallbackQuery = Service::where('slug', $slug);
+            if (Schema::hasColumn('services', 'is_active')) {
+                $fallbackQuery->where('is_active', true);
+            }
+            $service = $fallbackQuery->first();
         }
 
-        $services = Service::where('is_active', true)->get();
+        if (!$service) {
+            $service = Service::firstOrFail();
+        }
+
+        $allQuery = Service::query();
+        if (Schema::hasColumn('services', 'is_active')) {
+            $allQuery->where('is_active', true);
+        }
+        $services = $allQuery->get();
+
         return view('services.show', compact('service', 'services'));
     }
 }
